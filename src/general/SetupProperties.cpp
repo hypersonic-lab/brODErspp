@@ -6,6 +6,7 @@
 SetupProperties::SetupProperties(std::string& s_file_input)
         : s_problem_type("empty"),
           s_mixture("empty"),
+          s_composition("empty"),
           s_state_model("empty"),
           s_thermo_db("empty") {
 
@@ -36,6 +37,10 @@ void SetupProperties::errorInputFileInaccurate(){
 
     if (s_mixture.compare("empty") == 0) {
         std::cerr << "In the input file a mixture should be provided!" << std::endl;
+        exit(1);
+    }
+    if (s_composition.compare("empty") == 0) {
+        std::cerr << "In the input file a composition should be provided!" << std::endl;
         exit(1);
     }
     if (s_state_model.compare("empty") == 0) {
@@ -113,6 +118,9 @@ void SetupProperties::readInputFile(std::string& s_file_input)
     if(lineNow.compare("Name of the mixture:")==0) {
         s_mixture        = v_input_file.at(ii+1);
     }
+    if(lineNow.compare("Mixture composition:")==0) {
+        s_composition        = v_input_file.at(ii+1);
+    }
     if(lineNow.compare("State model:")==0) {
         s_state_model    = v_input_file.at(ii+1);
     }
@@ -126,6 +134,7 @@ void SetupProperties::readInputFile(std::string& s_file_input)
   std::cout << "\nInput file was read: "                 << std::endl;
   std::cout << "    Problem type: "                      << s_problem_type        << std::endl;
   std::cout << "    Mixture: "                           << s_mixture             << std::endl;
+  std::cout << "    Composition: "                       << s_composition         << std::endl;
   std::cout << "    State model: "                       << s_state_model         << std::endl;
   std::cout << "    Thermodynamic database: "            << s_thermo_db           << std::endl;
   std::cout << std::endl;

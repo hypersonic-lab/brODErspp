@@ -15,6 +15,7 @@ public:
 
     std::string getProblemType(){ return s_problem_type; }
     std::string getMixture(){ return s_mixture; }
+    std::string getComposition(){ return s_composition; }
     std::string getStateModel(){ return s_state_model; }
     std::string getThermoDB(){ return s_thermo_db; }
 
@@ -26,6 +27,7 @@ public:
 private:
     std::string s_problem_type;
     std::string s_mixture;
+    std::string s_composition;
     std::string s_state_model;
     std::string s_thermo_db;
 
