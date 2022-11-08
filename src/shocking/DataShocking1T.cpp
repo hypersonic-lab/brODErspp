@@ -129,11 +129,11 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
         std::cerr << " Aborting." << std::endl;
         exit(1);
       }
-      sum = 0;    
+      double sum_Y = 0;    
       for(int i_sp = 0; i_sp < n_sp; ++i_sp){
-        sum+=v_yi[i_sp];
+        sum_Y+=v_yi[i_sp];
       }
-      else if(sum != 0.0) {
+      else if(sum_Y != 0.0) {
         std::cerr << " ATTENTION: " << v_T_now.size() << " temperatures have been"
                   << " specified, while the state model supports " << n_eneq 
                   << ". Check the input file." << std::endl;
