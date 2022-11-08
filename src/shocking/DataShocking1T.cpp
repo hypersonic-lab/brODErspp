@@ -120,6 +120,11 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
         v_yi_now.push_back(yi_now_str);
       }
 
+      double sum_Y = 0;    
+      for(int i_sp = 0; i_sp < n_sp; ++i_sp){
+        sum_Y+=v_yi[i_sp];
+      }
+
       // Need to add check if add up to unity
       // Check if the number of temperatures given is fine
       if(v_yi_now.size() != n_sp) {
@@ -128,10 +133,6 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
                   << ". Check the input file." << std::endl;
         std::cerr << " Aborting." << std::endl;
         exit(1);
-      }
-      double sum_Y = 0;    
-      for(int i_sp = 0; i_sp < n_sp; ++i_sp){
-        sum_Y+=v_yi[i_sp];
       }
       else if(sum_Y != 0.0) {
         std::cerr << " ATTENTION: " << v_T_now.size() << " temperatures have been"
