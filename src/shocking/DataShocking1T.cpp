@@ -68,8 +68,9 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
   // Parses the input file lines
  
   // working variables
-  double T_now_str; 
+  double T_now_str, yi_now_str; 
   std::vector<double> v_T_now;
+  std::vector<double> v_yi_now;
  
   // Get Pressure, Temperature and Velocity
   for(size_t id_l = 0; id_l < l_input_file.size(); ++id_l) {
