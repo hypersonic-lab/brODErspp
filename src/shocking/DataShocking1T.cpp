@@ -109,6 +109,30 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
     if( l_input_file.at(id_l).compare("FS Vel:") == 0) {
       m_V = atof(l_input_file.at(id_l+1).c_str());
     }
+
+    // COMPOSITION
+    if( l_input_file.at(id_l).compare("FS Comp:") == 0) {
+
+      // Unpack the line in the composition
+      std::istringstream iss(l_input_file.at(id_l+1));
+      while(iss >> yi_now_str) {  // Read the values up to N
+        v_yi_now.push_back(yi_now_str);
+      }
+
+      // Need to add check if add up to unity
+      // Check if the number of temperatures given is fine
+      if(v_yi_now.size() != n_sp) {
+        std::cerr << " ATTENTION: " << v_T_now.size() << " temperatures have been"
+                  << " specified, while the state model supports " << n_eneq 
+                  << ". Check the input file." << std::endl;
+        std::cerr << " Aborting." << std::endl;
+        exit(1);
+      } else { // Assign compositions
+        for(size_t en_id = 0; en_id < n_sp; ++en_id) {
+          v_yi[en_id] = v_yi_now.at(en_id);
+        }
+      }
+    }
   }
 }
 
@@ -116,9 +140,10 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
 
 void DataShocking1T::buildState(){
 
-    m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
+    //m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
 
-    m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
+    m_mix.convert<Mutation::Thermodynamics::Y_TO_X>(&v_yi[0], &v_xi[0]);
+    //m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
     m_rho = m_mix.density(v_T[0], m_P, &v_xi[0]);
 
     // Convert yi to rhoi
@@ -195,6 +220,7 @@ void DataShocking1T::checkAndPrintFreeStream(){
   std::cout << "    Press [Pa]: " << m_P    << std::endl;
   std::cout << "    Temp [K]:   " << v_T[0] << std::endl;
   std::cout << "    Vel [m/s]:  " << m_V    << std::endl;
+  std::cout << "    Conc []:    " << v_X[0]    << std::endl;
   std::cout << "    Computed mass flux [kg/m2 s]: " << m_mdot << std::endl;
   std::cout << "    Computed density [kg/m3]:     " << m_rho  << std::endl;
   std::cout << std::endl;
