@@ -128,7 +128,19 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
                   << ". Check the input file." << std::endl;
         std::cerr << " Aborting." << std::endl;
         exit(1);
-      } else { // Assign compositions
+      }
+      sum = 0;    
+      for(int i_sp = 0; i_sp < n_sp; ++i_sp){
+        sum+=v_yi[i_sp];
+      }
+      else if(sum != 0.0) {
+        std::cerr << " ATTENTION: " << v_T_now.size() << " temperatures have been"
+                  << " specified, while the state model supports " << n_eneq 
+                  << ". Check the input file." << std::endl;
+        std::cerr << " Aborting." << std::endl;
+        exit(1);
+      }
+      else { // Assign compositions
         for(size_t en_id = 0; en_id < n_sp; ++en_id) {
           v_yi[en_id] = v_yi_now.at(en_id);
         }
