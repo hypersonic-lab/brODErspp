@@ -47,6 +47,7 @@ private:
     double m_V;
     double m_rho;
     double m_mdot;
+    double Y_sum;
     std::vector<double> v_rhoi;
     std::vector<double> v_xi;
     std::vector<double> v_yi;
