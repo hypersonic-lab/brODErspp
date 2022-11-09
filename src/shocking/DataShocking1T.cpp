@@ -68,7 +68,7 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
   // Parses the input file lines
  
   // working variables
-  double T_now_str, yi_now_str; 
+  double T_now_str, yi_now_str, sum_Y;
   std::vector<double> v_T_now;
   std::vector<double> v_yi_now;
  
@@ -120,7 +120,7 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
         v_yi_now.push_back(yi_now_str);
       }
 
-      double sum_Y = 0;    
+      sum_Y = 0.0;    
       for(int i_sp = 0; i_sp < n_sp; ++i_sp){
         sum_Y+=v_yi[i_sp];
       }
