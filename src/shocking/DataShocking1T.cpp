@@ -154,13 +154,13 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
 
 void DataShocking1T::buildState(){
 
-    if(sum_Y == 0.0){
-      m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
-      m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
-    }
-    else{
+    //if(sum_Y == 0.0){
+    //  m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
+    //  m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
+    //}
+    //else{
      m_mix.convert<Mutation::Thermodynamics::Y_TO_X>(&v_yi[0], &v_xi[0]);
-   }
+   //}
     //m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
     m_rho = m_mix.density(v_T[0], m_P, &v_xi[0]);
 
