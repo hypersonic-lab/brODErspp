@@ -27,7 +27,7 @@ DataShocking1T::DataShocking1T(Mutation::Mixture& l_mix)
                           v_yi(n_sp, 0.0),
                           v_T(n_eneq, 0.0),
                           v_X(n_eq, 0.0),
-                          sum_Y(0.0)
+                         // sum_Y(0.0)
 {}
 
 // -----------------------------------------------------------------
@@ -50,7 +50,7 @@ DataShocking1T::DataShocking1T(Mutation::Mixture& l_mix,
                           v_yi(n_sp, 0.0),
                           v_T(n_eneq, 0.0),
                           v_X(n_eq, 0.0),
-                          sum_Y(0.0)
+                          // sum_Y(0.0)
 {
     // Parse input file
     inputFileParse(l_input_file);
@@ -155,6 +155,11 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
 // -----------------------------------------------------------------
 
 void DataShocking1T::buildState(){
+
+  sum_Y = 0.0;
+  for (int i_sp = 0; i_sp < n_sp; ++i_sp){
+    sum_Y+=v_yi[i_sp];
+  }
 
     if(sum_Y == 0.0){
       m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
