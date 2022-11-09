@@ -122,7 +122,7 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
 
       sum_Y = 0.0;    
       for(int i_sp = 0; i_sp < n_sp; ++i_sp){
-        sum_Y+=v_yi[i_sp];
+        sum_Y+=v_yi_now.at(i_sp);
       }
 
       // Need to add check if add up to unity
