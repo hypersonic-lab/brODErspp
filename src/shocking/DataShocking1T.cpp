@@ -128,15 +128,15 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
       // Need to add check if add up to unity
       // Check if the number of temperatures given is fine
       if(v_yi_now.size() != n_sp) {
-        std::cerr << " ATTENTION: " << v_T_now.size() << " temperatures have been"
-                  << " specified, while the state model supports " << n_eneq 
+        std::cerr << " ATTENTION: " << v_yi_now.size() << " concentrations have been"
+                  << " specified, while the gas model requires " << n_sp
                   << ". Check the input file." << std::endl;
         std::cerr << " Aborting." << std::endl;
         exit(1);
       }
       else if(sum_Y != 1.0) {
-        std::cerr << " ATTENTION: " << v_T_now.size() << " temperatures have been"
-                  << " specified, while the state model supports " << n_eneq 
+        std::cerr << " ATTENTION: " 
+                  << " The inputted mass fractions do not sum to 1:  " << sum_Y
                   << ". Check the input file." << std::endl;
         std::cerr << " Aborting." << std::endl;
         exit(1);
@@ -154,14 +154,13 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
 
 void DataShocking1T::buildState(){
 
-    //if(sum_Y == 0.0){
-    //  m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
-    //  m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
-    //}
-    //else{
+    if(sum_Y == 0.0){
+      m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
+      m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
+    }
+    else{
      m_mix.convert<Mutation::Thermodynamics::Y_TO_X>(&v_yi[0], &v_xi[0]);
-   //}
-    //m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
+   }
     m_rho = m_mix.density(v_T[0], m_P, &v_xi[0]);
 
     // Convert yi to rhoi
