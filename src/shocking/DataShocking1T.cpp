@@ -134,7 +134,7 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
         std::cerr << " Aborting." << std::endl;
         exit(1);
       }
-      else if(sum_Y != 0.0) {
+      else if(sum_Y != 1.0) {
         std::cerr << " ATTENTION: " << v_T_now.size() << " temperatures have been"
                   << " specified, while the state model supports " << n_eneq 
                   << ". Check the input file." << std::endl;
@@ -154,9 +154,13 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
 
 void DataShocking1T::buildState(){
 
-    //m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
-
-    m_mix.convert<Mutation::Thermodynamics::Y_TO_X>(&v_yi[0], &v_xi[0]);
+    if(sum_Y == 0.0){
+      m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
+      m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
+    }
+    else{
+     m_mix.convert<Mutation::Thermodynamics::Y_TO_X>(&v_yi[0], &v_xi[0]);
+   }
     //m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
     m_rho = m_mix.density(v_T[0], m_P, &v_xi[0]);
 
