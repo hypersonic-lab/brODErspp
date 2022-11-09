@@ -26,7 +26,8 @@ DataShocking1T::DataShocking1T(Mutation::Mixture& l_mix)
                           v_xi(n_sp, 0.0),
                           v_yi(n_sp, 0.0),
                           v_T(n_eneq, 0.0),
-                          v_X(n_eq, 0.0)
+                          v_X(n_eq, 0.0),
+                          sum_Y(0.0)
 {}
 
 // -----------------------------------------------------------------
@@ -48,7 +49,8 @@ DataShocking1T::DataShocking1T(Mutation::Mixture& l_mix,
                           v_xi(n_sp, 0.0),
                           v_yi(n_sp, 0.0),
                           v_T(n_eneq, 0.0),
-                          v_X(n_eq, 0.0)
+                          v_X(n_eq, 0.0),
+                          sum_Y(0.0)
 {
     // Parse input file
     inputFileParse(l_input_file);
