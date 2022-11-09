@@ -156,8 +156,7 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
 
 void DataShocking1T::buildState(){
 
-  double sum_Y; //= 0.0;
-  sum_Y = 0.0;
+  double sum_Y = 0.0;
   for (int i_sp = 0; i_sp < n_sp; ++i_sp){
     sum_Y+=v_yi[i_sp];
   }
