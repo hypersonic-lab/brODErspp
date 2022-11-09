@@ -161,7 +161,7 @@ void DataShocking1T::buildState(){
     sum_Y+=v_yi[i_sp];
   }
 
-    if(sum_Y == 0.0){
+    if(sum_Y <= 0.0001){
       m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
       m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
     }
