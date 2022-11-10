@@ -149,6 +149,9 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
         }
       }
     }
+    else {
+      
+    }
   }
 }
 
@@ -158,10 +161,10 @@ void DataShocking1T::buildState(){
 
   double sum_Y = 0.0;
   for (int i_sp = 0; i_sp < n_sp; ++i_sp){
-    sum_Y+=v_yi[i_sp];
+          sum_Y+=v_yi[i_sp];
   }
 
-    if(sum_Y <= 0.0001){
+    if(sum_Y == 0.0){
       m_mix.equilibriumComposition(v_T[0], m_P, &v_xi[0]);
       m_mix.convert<Mutation::Thermodynamics::X_TO_Y>(&v_xi[0], &v_yi[0]);
     }
