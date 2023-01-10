@@ -18,12 +18,12 @@ enable_language(CXX)
 
 # --- Mutation++ library ---
 
-set(MPP_INSTALL_DIR "" CACHE PATH "Mutation++ installation directory")
+set(MPP_INSTALL_DIR "/home/u15/hanquist/REPO/Mutationpp/install" CACHE PATH "Mutation++ installation directory")
 include_directories(${MPP_INSTALL_DIR}/include/mutation++)
 #include_directories(${MPP_INSTALL_DIR}/include/eigen3)
 include_directories(${MPP_INSTALL_DIR}/../thirdparty/eigen)
 include_directories(${MPP_INSTALL_DIR}/include/)
-link_directories(${MPP_INSTALL_DIR}/lib)
+link_directories(${MPP_INSTALL_DIR}/lib64)
 
 # --- Boost Library ---
 # 
@@ -31,7 +31,7 @@ link_directories(${MPP_INSTALL_DIR}/lib)
 # BOOST_ROOT is the suggested location.
 # Boost_NO_SYSTEM_PATHS makes sure that boost is only searched in the specified dir.
 
-set(BOOST_DIRECTORY "" CACHE STRING "Boost library directory")
+set(BOOST_DIRECTORY "/home/u15/hanquist/opt/boost_1_80_0" CACHE STRING "Boost library directory")
 if(BOOST_DIRECTORY)
   set(BOOST_ROOT ${BOOST_DIRECTORY})
   set(Boost_NO_SYSTEM_PATHS ON)
