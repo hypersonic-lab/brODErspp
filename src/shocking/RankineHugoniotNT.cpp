@@ -26,6 +26,13 @@ void RankineHugoniotNT::applyShockRelations(const Data& l_data_before, Data& l_d
     double l_M1 = l_u1/l_c1;
     double l_M1s = l_M1 * l_M1;
 
+    std::cout <<" Post-shock conditions "<<std::endl;
+    std::cout <<"P2 :    "<<std::setw(15)<< l_p1 * (2.0 * l_gamma * l_M1s - l_gm1) / l_gp1<<" [Pa]"<<std::endl;
+    std::cout <<"T2 :    "<<std::setw(15)<< lv_T[0] * (2.0 * l_gamma * l_M1s - l_gamma + 1.0) * (l_gm1 + 2.0 / l_M1s) / (l_gp1 * l_gp1)<<" [K]"<<std::endl;
+    std::cout <<"US-U2 : "<<std::setw(15)<< l_u1 - l_c1 * 2.0 / l_gp1 * (l_M1 - 1.0 / l_M1)<<" [m/s]"<<std::endl;
+                    std::cout<<"---------------------------------------------------------------------------"<<std::endl;
+
+
     l_data_after.setPressure(l_p1 * (2.0 * l_gamma * l_M1s - l_gm1) / l_gp1);
     l_data_after.setVelocity(l_u1 - l_c1 * 2.0 / l_gp1 * (l_M1 - 1.0 / l_M1));
     lv_T[0] = lv_T[0] * (2.0 * l_gamma * l_M1s - l_gamma + 1.0) * (l_gm1 + 2.0 / l_M1s) / (l_gp1 * l_gp1);
