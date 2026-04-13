@@ -1,0 +1,26 @@
+Below is supplemental installation information to the already existing .doc, with adapation to macOS installation. The following was done on an ARM64 Apple M chip
+
+Make sure CMake application is installed and is installed for command line use in .bashrc or .bash_profile
+`PATH="/Applications/CMake.app/Contents/bin":"$PATH"`
+
+Using homebrew, install boost
+`brew install boost`
+
+The version I'm using is `boost 1.90.0_1`
+
+Set the MPP_INSTALL_DIR to Mutation++ location.
+Change link_directories to lib instead of lib64
+
+Set the BOOST_DIRECTORY. Mine was `/opt/homebrew/opt/boost`
+
+Update set_source_files_properties to `set_source_files_properties(${brODErs++_SRCS} PROPERTIES COMPILE_FLAGS -std=c++17)`
+
+The following code can be then use to build brODErs. It is likely that the CMake version installed is different than when brODErs was originally made. The below CMake policy version flag should fix that:
+
+  export CC=$(which gcc)
+  export CXX=$(which g++)
+  rm -rf build
+  mkdir build
+  cd build
+  cmake .. -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+  make install
