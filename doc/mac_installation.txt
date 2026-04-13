@@ -25,4 +25,4 @@ The following code can be then use to build brODErs. It is likely that the CMake
   cmake .. -DCMAKE_POLICY_VERSION_MINIMUM=3.5
   make install
 
-brODErs can then be run using the run_testcase.sh file located in this directory.
+brODErs can then be run using the run_testcase.sh file located in this directory. The command `chmod u+x run_testcase.sh` will be needed. It can then be executed with `./run_testcase.sh`
