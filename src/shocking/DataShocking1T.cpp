@@ -136,7 +136,8 @@ void DataShocking1T::inputFileParse(const std::vector< std::string > l_input_fil
         std::cerr << " Aborting." << std::endl;
         exit(1);
       }
-      else if(sum_Y != 1.0) {
+      //else if(sum_Y != 1.0) {
+      else if(fabs(sum_Y - 1.0) > 1e-5){
         std::cerr << " ATTENTION: " 
                   << " The inputted mass fractions do not sum to 1:  " << sum_Y
                   << ". Check the input file." << std::endl;
